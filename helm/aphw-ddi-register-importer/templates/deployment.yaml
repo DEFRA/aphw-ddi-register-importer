@@ -1,0 +1,8 @@
+{{- include "ffc-helm-library.deployment" (list . "aphw-ddi-register-importer.deployment") -}}
+{{- define "aphw-ddi-register-importer.deployment" -}}
+spec:
+  template:
+    spec:
+      containers:
+      - {{ include "ffc-helm-library.container" (list . "aphw-ddi-register-importer.container") }}
+{{- end -}}

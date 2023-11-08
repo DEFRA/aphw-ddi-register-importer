@@ -1,8 +1,8 @@
 {
-  "name": "ffc-template-node",
+  "name": "aphw-ddi-register-importer",
   "version": "0.1.0",
-  "description": "description-of-project-goes-here",
-  "homepage": "https://github.com/DEFRA/ffc-template-node",
+  "description": "Worker service to process DDI register upload requests",
+  "homepage": "https://github.com/DEFRA/aphw-ddi-register-importer",
   "main": "app/index.js",
   "scripts": {
     "pretest": "npm run test:lint",

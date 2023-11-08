@@ -2,11 +2,11 @@
 # that test output is saved to the host
 
 services:
-  ffc-template-node:
+  aphw-ddi-register-importer:
     build:
       target: development
-    image: ffc-template-node-development
-    container_name: ffc-template-node-test
+    image: aphw-ddi-register-importer-development
+    container_name: aphw-ddi-register-importer-test
     command: npm run test
     volumes:
       - ./app:/home/node/app
