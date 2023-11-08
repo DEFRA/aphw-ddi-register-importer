@@ -1,6 +1,6 @@
 # aphw-ddi-register-importer
 
-Node worker service to process DDI Register upload requests.
+Node worker service to process DDI Register import requests.
 
 ## Prerequisites
 
