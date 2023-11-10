@@ -1,6 +1,6 @@
 require('./insights').setup()
 require('log-timestamp')
-const { start, stop } = require('./messaging')
+const { start, stop } = require('./messaging/inbound')
 
 process.on(['SIGTERM', 'SIGINT'], async () => {
   await stop()

@@ -1,6 +1,6 @@
 const { MessageReceiver } = require('ffc-messaging')
-const { importRequestQueue } = require('../config/messaging/import-queue')
-const processImportRequest = require('./inbound/register-import/process-import-request')
+const { importRequestQueue } = require('../../config/messaging/import-queue')
+const processImportRequest = require('./register-import/process-import-request')
 
 let importRequestReceiver
 
