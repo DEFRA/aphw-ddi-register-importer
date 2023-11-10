@@ -1,100 +1,100 @@
 const schema = {
-  'EmailRef': {
+  EmailRef: {
     prop: 'emailRef',
     type: Number
   },
-  'Person': {
+  Person: {
     prop: 'person',
     type: {
-      'Title': {
+      Title: {
         prop: 'title',
         type: String,
         required: true
       },
-      'FirstName': {
+      FirstName: {
         prop: 'firstName',
         type: String,
         required: true
       },
-      'LastName': {
+      LastName: {
         prop: 'lastName',
         type: String,
         required: true
       },
-      'AddressLine1': {
+      AddressLine1: {
         prop: 'addressLine1',
         type: String,
         required: true
       },
-      'AddressLine2': {
+      AddressLine2: {
         prop: 'addressLine2',
         type: String
       },
-      'TownOrCity': {
+      TownOrCity: {
         prop: 'townOrCity',
         type: String,
         required: true
       },
-      'County': {
+      County: {
         prop: 'county',
         type: String
       },
-      'PostCode': {
+      PostCode: {
         prop: 'postcode',
         type: String,
         required: true
       },
-      'DateOfBirth': {
+      DateOfBirth: {
         prop: 'dateOfBirth',
         type: String,
         required: true
       },
-      'PhoneNumber': {
+      PhoneNumber: {
         prop: 'phoneNumber',
         type: Number,
         required: true
       },
-      'EmailAddress': {
+      EmailAddress: {
         prop: 'email',
         type: String,
         required: true
       }
     }
   },
-  'Dog': {
+  Dog: {
     prop: 'dog',
     type: {
-      'DogsName': {
+      DogsName: {
         prop: 'name',
         type: String,
         required: true
       },
-      'DogDOB': {
+      DogDOB: {
         prop: 'dateOfBirth',
         type: String,
         required: true
       },
-      'DogColour': {
+      DogColour: {
         prop: 'colour',
         type: String,
         required: true
       },
-      'DogGender': {
+      DogGender: {
         prop: 'gender',
         type: String,
         required: true
       },
-      'Neutered': {
+      Neutered: {
         prop: 'neutered',
         type: String,
         required: true
       },
-      'Microchipped': {
+      Microchipped: {
         prop: 'microchipped',
         type: String,
         required: true
       },
-      'MicrochipNumber': {
+      MicrochipNumber: {
         prop: 'microchipNumber',
         type: String,
         required: true
@@ -103,16 +103,16 @@ const schema = {
         prop: 'referenceNumber',
         type: String
       },
-      'ApplicationStatus': {
+      ApplicationStatus: {
         prop: 'applicationStatus',
         type: String
       },
-      'RejectionReason': {
+      RejectionReason: {
         prop: 'rejectionReason',
         type: String
       }
     }
-  },
+  }
 }
 
 module.exports = schema

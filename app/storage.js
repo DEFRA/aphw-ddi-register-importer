@@ -23,7 +23,7 @@ const downloadRegisterBlob = async filename => {
   if (!await blobClient.exists()) {
     throw new Error(`Register upload file (${filename}) does not exist.`)
   }
-  
+
   return await blobClient.downloadToBuffer()
 }
 

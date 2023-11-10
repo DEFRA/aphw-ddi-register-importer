@@ -1,3 +1,4 @@
+const util = require('util')
 const { validate: validateRequest } = require('./import-request-schema')
 const { validate: validateData } = require('./import-data-schema')
 const { importRegister } = require('../../../register-import')
@@ -5,15 +6,15 @@ const { downloadRegisterBlob } = require('../../../storage')
 
 const process = async (message, receiver) => {
   try {
-    const body = message.body
+    const importRequest = message.body
 
-    validateRequest(body)
-    validateData(body.data)
+    validateRequest(importRequest)
+    validateData(importRequest.data)
 
-    const registerMetadata = body.data
+    const registerMetadata = importRequest.data
 
-    console.log('Received register import request: ', JSON.stringify(body))
-    
+    console.log('Received register import request: ', util.inspect(importRequest, false, null, true))
+
     const register = await downloadRegisterBlob(registerMetadata.filename)
     await importRegister(register)
 

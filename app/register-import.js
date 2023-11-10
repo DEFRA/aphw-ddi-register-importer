@@ -8,16 +8,15 @@ const processRows = file => {
     const person = row.person
     const dog = row.dog
 
-    if (dog.referenceNumber === undefined || dog.referenceNumber === '')
-      return
+    if (dog.referenceNumber === undefined || dog.referenceNumber === '') {
+      const key = `${person.lastName}^${person.postcode}^${person.dateOfBirth}`
 
-    const key = `${person.lastName}^${person.postcode}^${person.dateOfBirth}`
+      const value = registerMap.get(key) || { ...person, dogs: [] }
 
-    const value = registerMap.get(key) || { ...person, dogs: [] }
+      value.dogs.push(dog)
 
-    value.dogs.push(dog)
-
-    registerMap.set(key, value)
+      registerMap.set(key, value)
+    }
   })
 
   return {

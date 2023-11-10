@@ -6,7 +6,7 @@ let importRequestReceiver
 
 const start = async () => {
   const importAction = message => processImportRequest(message, importRequestReceiver)
-  
+
   importRequestReceiver = new MessageReceiver(importRequestQueue, importAction)
   await importRequestReceiver.subscribe()
 
