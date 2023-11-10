@@ -13,7 +13,7 @@ const processRows = file => {
 
     const key = `${person.lastName}^${person.postcode}^${person.dateOfBirth}`
 
-    const value = registerMap.get(key) || { person: person, dogs: [] }
+    const value = registerMap.get(key) || { ...person, dogs: [] }
 
     value.dogs.push(dog)
 
@@ -28,7 +28,9 @@ const processRows = file => {
 const importRegister = async data => {
   const file = (await readXlsxFile(data, { schema: registerSchema }))
 
-  processRows(file)
+  const { payload } = processRows(file)
+
+  console.dir(payload, { depth: null })
 }
 
 module.exports = {

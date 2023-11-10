@@ -99,7 +99,7 @@ const schema = {
         type: String,
         required: true
       },
-      'ReferenceNumber': {
+      'Reference Number': {
         prop: 'referenceNumber',
         type: String
       },
