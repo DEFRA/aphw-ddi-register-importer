@@ -21,3 +21,6 @@ services:
 
   aphw-ddi-register-importer-azurite:
     image: mcr.microsoft.com/azure-storage/azurite:3.23.0
+    ports: 
+      - "10000:10000"
+
