@@ -2,6 +2,5 @@
 {{- define "aphw-ddi-register-importer.config-map" -}}
 data:
   NODE_ENV: {{ quote .Values.environment }}
-  PORT: {{ quote .Values.container.port }}
   APPINSIGHTS_CLOUDROLE: {{ quote .Values.name }}
 {{- end -}}
