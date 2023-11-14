@@ -14,7 +14,7 @@ const start = async () => {
 }
 
 const stop = async () => {
-  await importRequestReceiver.close()
+  await importRequestReceiver.closeConnection()
 }
 
 module.exports = {
