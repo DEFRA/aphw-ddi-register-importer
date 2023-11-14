@@ -2,7 +2,7 @@ const Joi = require('joi')
 
 const schema = Joi.object({
   filename: Joi.string(),
-  email: Joi.string().email({ tlds: false })
+  email: Joi.string().email({ tlds: false }).allow('Developer')
 })
 
 const validate = request => {

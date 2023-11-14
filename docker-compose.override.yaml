@@ -22,7 +22,7 @@ services:
     volumes:
       - azurite_data:/opt/azurite
     ports:
-      - "10000:10000"
+      - "10010:10000"
 
 volumes:
   azurite_data:
