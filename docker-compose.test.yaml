@@ -22,9 +22,13 @@ services:
   aphw-ddi-register-importer-azurite:
     image: mcr.microsoft.com/azure-storage/azurite:3.23.0
 <<<<<<< HEAD
+<<<<<<< HEAD
     ports: 
       - "10000:10000"
 
+=======
+    
+>>>>>>> parent of 2db945f (Update storage connection docker compose)
 =======
     
 >>>>>>> parent of 2db945f (Update storage connection docker compose)
