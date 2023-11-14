@@ -11,7 +11,7 @@ const register = {
         postcode: 'AA1 1AA',
         dateOfBirth: '28/04/1970',
         phoneNumber: 3333333333,
-        email: 'defra@defraemailtest.com'
+        email: 'test@example.com'
       },
       dog: {
         name: 'Pepper',
@@ -35,7 +35,7 @@ const register = {
         postcode: 'AA1 1AA',
         dateOfBirth: '28/04/1970',
         phoneNumber: 3333333333,
-        email: 'defra@defraemailtest.com'
+        email: 'test@example.com'
       },
       dog: {
         name: 'George',
@@ -59,7 +59,7 @@ const register = {
         postcode: 'AA1 1AA',
         dateOfBirth: '28/04/1970',
         phoneNumber: 3333333333,
-        email: 'defra@defraemailtest.com'
+        email: 'test@example.com'
       },
       dog: {
         name: 'Sam',
@@ -83,7 +83,7 @@ const register = {
         postcode: 'AA1 1AA',
         dateOfBirth: '28/04/1960',
         phoneNumber: 3333333333,
-        email: 'defra@defraemailtest.com'
+        email: 'test@example.com'
       },
       dog: {
         name: 'Pluto',
@@ -107,7 +107,7 @@ const register = {
         postcode: 'SW1A 2AA',
         dateOfBirth: '01/01/2000',
         phoneNumber: 3333333333,
-        email: 'defra@defraemailtest.com'
+        email: 'test@example.com'
       },
       dog: {
         name: 'Fred',
@@ -131,7 +131,7 @@ const register = {
         postcode: 'SW1A 2AA',
         dateOfBirth: '01/01/2000',
         phoneNumber: 3333333333,
-        email: 'defra@defraemailtest.com'
+        email: 'test@example.com'
       },
       dog: {
         name: 'Max',
