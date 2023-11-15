@@ -19,6 +19,8 @@ const process = async (message, receiver) => {
     await importRegister(register)
 
     await receiver.completeMessage(message)
+
+    console.log('Completed register import request')
   } catch (err) {
     await receiver.deadLetterMessage(message)
     console.error('Unable to complete register import request: ', err)
