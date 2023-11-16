@@ -23,7 +23,7 @@ describe('storage', () => {
   test('should use connection string if useConnectionString true', () => {
     process.env.AZURE_STORAGE_USE_CONNECTION_STRING = 'true'
 
-    require('../../app/storage')
+    require('../../../app/storage/get-blob-client')
 
     expect(blobServiceClient.fromConnectionString).toHaveBeenCalledTimes(1)
   })
@@ -31,7 +31,7 @@ describe('storage', () => {
   test('should use DefaultAzureCredential if useConnectionString false', () => {
     process.env.AZURE_STORAGE_USE_CONNECTION_STRING = 'false'
 
-    require('../../app/storage')
+    require('../../../app/storage/get-blob-client')
 
     expect(blobServiceClient).toHaveBeenCalledTimes(1)
     expect(defaultAzureCredential).toHaveBeenCalledTimes(1)

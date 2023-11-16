@@ -6,8 +6,8 @@ jest.mock('../../../../app/messaging/inbound/register-import/import-data-schema'
 jest.mock('../../../../app/register-import')
 const { importRegister: mockImportRegister } = require('../../../../app/register-import')
 
-jest.mock('../../../../app/storage')
-const { downloadRegisterBlob: mockDownloadRegisterBlob } = require('../../../../app/storage')
+jest.mock('../../../../app/storage/register-blob-repository')
+const { downloadRegisterBlob: mockDownloadRegisterBlob } = require('../../../../app/storage/register-blob-repository')
 
 const receiver = require('../../../mocks/messaging/receiver')
 const message = require('../../../mocks/messaging/import-request')

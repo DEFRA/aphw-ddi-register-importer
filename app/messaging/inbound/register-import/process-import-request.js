@@ -2,7 +2,7 @@ const util = require('util')
 const { validate: validateRequest } = require('./import-request-schema')
 const { validate: validateData } = require('./import-data-schema')
 const { importRegister } = require('../../../register-import')
-const { downloadRegisterBlob } = require('../../../storage')
+const { downloadRegisterBlob } = require('../../../storage/register-blob-repository')
 
 const process = async (message, receiver) => {
   try {
