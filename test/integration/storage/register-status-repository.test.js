@@ -25,8 +25,6 @@ describe('register status table repository', () => {
     jest.setSystemTime(new Date('2023-11-16T13:58:20.000Z'))
     await setProcessing(filename, 'test@example.com')
 
-    console.log('entity created')
-
     const update = await getLatestUpdate(filename)
 
     expect(update).toBeDefined()
@@ -59,6 +57,12 @@ describe('register status table repository', () => {
       createdOn: '2023-11-16T13:58:19.000Z',
       updatedAt: '2023-11-16T13:58:20.000Z'
     })
+  })
+
+  test('getLatestUpdate should throw error if filename is not found', async () => {
+    const filename = 'test-not-found'
+
+    await expect(getLatestUpdate(filename)).rejects.toThrow(`No table entry found for ${filename}`)
   })
 
   afterAll(async () => {

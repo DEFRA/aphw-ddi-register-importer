@@ -56,12 +56,24 @@ describe('process import request message', () => {
     expect(receiver.completeMessage).not.toHaveBeenCalled()
   })
 
-  test('error during processing should set import status to failed', async () => {
+  test('eerror during processing should call setFailed', async () => {
     validateRequest.mockImplementation(() => { throw new Error('test error') })
 
     await processImportRequest(message, receiver)
 
     expect(setFailed).toHaveBeenCalledWith(message.body.data.filename)
+  })
+
+  test('error during processing should not call setFailed if no filename', async () => {
+    const mockMessage = { ...message }
+
+    delete mockMessage.body.data.filename
+
+    validateRequest.mockImplementation(() => { throw new Error('test error') })
+
+    await processImportRequest(mockMessage, receiver)
+
+    expect(setFailed).not.toHaveBeenCalled()
   })
 
   test('error during processing should deadletter message', async () => {
