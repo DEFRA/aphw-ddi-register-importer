@@ -19,4 +19,4 @@ services:
 
   aphw-ddi-register-importer-azurite:
     image: mcr.microsoft.com/azure-storage/azurite:3.23.0
-    command: "azurite --skipApiVersionCheck --loose --blobHost 0.0.0.0"
+    command: "azurite --skipApiVersionCheck --loose --blobHost 0.0.0.0 --tableHost 0.0.0.0"

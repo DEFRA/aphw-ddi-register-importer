@@ -1,14 +1,16 @@
 const Joi = require('joi')
 
 const schema = Joi.object({
-  specVersion: Joi.string().required(),
+  body: Joi.object({
+    specVersion: Joi.string().required(),
+    id: Joi.string().uuid().required(),
+    time: Joi.date().required(),
+    subject: Joi.string().default('None'),
+    dataContentType: Joi.string().default('None'),
+    data: Joi.any().default({})
+  }).required(),
   type: Joi.string().required(),
-  source: Joi.string().required(),
-  id: Joi.string().uuid().required(),
-  time: Joi.date().required(),
-  subject: Joi.string().default('None'),
-  dataContentType: Joi.string().default('None'),
-  data: Joi.any().default({})
+  source: Joi.string().required()
 }).required()
 
 const validate = notification => {
