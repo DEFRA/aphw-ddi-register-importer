@@ -7,21 +7,21 @@ const { setProcessing, setComplete, setFailed } = require('../../../storage/regi
 
 const process = async (message, receiver) => {
   try {
-    const importRequest = message.body
+    const importRequest = message
 
-    validateRequest(importRequest)
-    validateData(importRequest.data)
+    validateRequest(importRequest.body)
+    validateData(importRequest.body.data)
 
-    await setProcessing(importRequest.data.filename)
+    const registerMetadata = importRequest.body.data
 
-    const registerMetadata = importRequest.data
+    await setProcessing(registerMetadata.filename)
 
-    console.log('Received register import request: ', util.inspect(importRequest, false, null, true))
+    console.log('Received register import request: ', util.inspect(importRequest.body, false, null, true))
 
     const register = await downloadRegisterBlob(registerMetadata.filename)
     await importRegister(register)
 
-    await setComplete(importRequest.data.filename)
+    await setComplete(registerMetadata.filename)
 
     await receiver.completeMessage(message)
 
