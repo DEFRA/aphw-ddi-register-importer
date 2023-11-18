@@ -1,10 +1,12 @@
 const readXlsxFile = require('read-excel-file/node')
 const registerSchema = require('./schema/register-schema')
 
-const processRows = file => {
+const processRows = async (register, sheet, schema) => {
+  const xlsx = await readXlsxFile(register, { sheet, schema })
+
   const registerMap = new Map()
 
-  file.rows.forEach(row => {
+  xlsx.rows.forEach(row => {
     const person = row.person
     const dog = row.dog
 
@@ -24,10 +26,8 @@ const processRows = file => {
   }
 }
 
-const importRegister = async data => {
-  const file = await readXlsxFile(data, { schema: registerSchema })
-
-  return processRows(file)
+const importRegister = async register => {
+  return processRows(register, 'Passed', registerSchema)
 }
 
 module.exports = {

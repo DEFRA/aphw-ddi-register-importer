@@ -20,7 +20,7 @@ describe('register import', () => {
     const { payload } = await importRegister([])
 
     const person = payload.find(p => p.lastName === 'Poppins' &&
-      p.dateOfBirth === '01/01/2000' &&
+      p.dateOfBirth.getDate() === new Date(2000, 0, 1).getDate() &&
       p.postcode === 'SW1A 2AA')
 
     expect(person.dogs).toHaveLength(2)
@@ -36,11 +36,11 @@ describe('register import', () => {
     const { payload } = await importRegister([])
 
     const person = payload.find(p => p.lastName === 'Poppins' &&
-      p.dateOfBirth === '01/01/2000' &&
+      p.dateOfBirth.getTime() === new Date(2000, 0, 1).getTime() &&
       p.postcode === 'SW1A 2AA')
 
     const dog = person.dogs.find(d => d.name === 'Sam' &&
-      d.dateOfBirth === '01/01/2021')
+      d.dateOfBirth.getDate() === new Date(2021, 0, 1).getDate())
 
     expect(person.dogs).toHaveLength(2)
     expect(dog).toBeUndefined()
