@@ -1,16 +1,7 @@
 const schema = {
-  EmailRef: {
-    prop: 'emailRef',
-    type: Number
-  },
   Person: {
     prop: 'person',
     type: {
-      Title: {
-        prop: 'title',
-        type: String,
-        required: true
-      },
       FirstName: {
         prop: 'firstName',
         type: String,
@@ -37,7 +28,13 @@ const schema = {
       },
       County: {
         prop: 'county',
-        type: String
+        type: String,
+        required: false
+      },
+      Country: {
+        prop: 'country',
+        type: String,
+        required: true
       },
       PostCode: {
         prop: 'postcode',
@@ -46,12 +43,11 @@ const schema = {
       },
       DateOfBirth: {
         prop: 'dateOfBirth',
-        type: String,
+        type: Date,
         required: true
       },
       PhoneNumber: {
         prop: 'phoneNumber',
-        type: Number,
         required: true
       },
       EmailAddress: {
@@ -71,7 +67,7 @@ const schema = {
       },
       DogDOB: {
         prop: 'dateOfBirth',
-        type: String,
+        type: Date,
         required: true
       },
       DogColour: {
@@ -82,6 +78,11 @@ const schema = {
       DogGender: {
         prop: 'gender',
         type: String,
+        required: true
+      },
+      'Insurance Start Date': {
+        prop: 'insuranceStartDate',
+        type: Date,
         required: true
       },
       Neutered: {
@@ -96,19 +97,15 @@ const schema = {
       },
       MicrochipNumber: {
         prop: 'microchipNumber',
-        type: String,
         required: true
       },
       'Reference Number': {
         prop: 'referenceNumber',
-        type: String
+        type: String,
+        required: true
       },
       ApplicationStatus: {
         prop: 'applicationStatus',
-        type: String
-      },
-      RejectionReason: {
-        prop: 'rejectionReason',
         type: String
       }
     }
