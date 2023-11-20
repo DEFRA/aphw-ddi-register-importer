@@ -1,5 +1,5 @@
 const { BlobServiceClient } = require('@azure/storage-blob')
-const { downloadRegisterBlob } = require('../../app/storage')
+const { downloadRegisterBlob } = require('../../../app/storage/register-blob-repository')
 
 const blobServiceClient = BlobServiceClient.fromConnectionString(process.env.AZURE_STORAGE_CONNECTION_STRING)
 

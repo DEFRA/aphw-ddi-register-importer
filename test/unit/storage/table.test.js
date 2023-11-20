@@ -1,16 +1,16 @@
 describe('storage', () => {
   const DEFAULT_ENV = process.env
 
-  let blobServiceClient
+  let tableClient
   let defaultAzureCredential
 
   beforeEach(() => {
     jest.resetModules()
 
-    jest.mock('@azure/storage-blob')
+    jest.mock('@azure/data-tables')
     jest.mock('@azure/identity')
 
-    blobServiceClient = require('@azure/storage-blob').BlobServiceClient
+    tableClient = require('@azure/data-tables').TableClient
     defaultAzureCredential = require('@azure/identity').DefaultAzureCredential
 
     process.env = { ...DEFAULT_ENV }
@@ -23,18 +23,20 @@ describe('storage', () => {
   test('should use connection string if useConnectionString true', () => {
     process.env.AZURE_STORAGE_USE_CONNECTION_STRING = 'true'
 
-    require('../../app/storage')
+    require('../../../app/storage/get-table-client')
 
-    expect(blobServiceClient.fromConnectionString).toHaveBeenCalledTimes(1)
+    expect(tableClient.fromConnectionString).toHaveBeenCalledTimes(1)
+    expect(tableClient).not.toHaveBeenCalled()
+    expect(defaultAzureCredential).not.toHaveBeenCalled()
   })
 
   test('should use DefaultAzureCredential if useConnectionString false', () => {
     process.env.AZURE_STORAGE_USE_CONNECTION_STRING = 'false'
 
-    require('../../app/storage')
+    require('../../../app/storage/get-table-client')
 
-    expect(blobServiceClient).toHaveBeenCalledTimes(1)
+    expect(tableClient).toHaveBeenCalledTimes(1)
     expect(defaultAzureCredential).toHaveBeenCalledTimes(1)
-    expect(blobServiceClient.fromConnectionString).not.toHaveBeenCalled()
+    expect(tableClient.fromConnectionString).not.toHaveBeenCalled()
   })
 })
