@@ -21,7 +21,8 @@ const register = {
         neutered: 'Yes',
         microchipped: 'Yes',
         microchipNumber: '2134567891',
-        referenceNumber: '1234'
+        referenceNumber: '1234',
+        applicationStatus: 'Approved'
       }
     },
     {
@@ -45,7 +46,8 @@ const register = {
         neutered: 'Yes',
         microchipped: 'Yes',
         microchipNumber: '1234567891',
-        referenceNumber: '1234'
+        referenceNumber: '1234',
+        applicationStatus: 'Approved'
       }
     },
     {
@@ -68,7 +70,8 @@ const register = {
         insuranceStartDate: new Date(2023, 10, 11),
         neutered: 'Yes',
         microchipped: 'Yes',
-        microchipNumber: '1234567891'
+        microchipNumber: '1234567891',
+        applicationStatus: 'Approved'
       }
     },
     {
@@ -93,7 +96,8 @@ const register = {
         neutered: 'No',
         microchipped: 'Yes',
         microchipNumber: '1234567891',
-        referenceNumber: '1234'
+        referenceNumber: '1234',
+        applicationStatus: 'Approved'
       }
     },
     {
@@ -117,7 +121,8 @@ const register = {
         neutered: 'No',
         microchipped: 'No',
         microchipNumber: 'N/A',
-        referenceNumber: '1234'
+        referenceNumber: '1234',
+        applicationStatus: 'Approved'
       }
     },
     {
@@ -141,7 +146,33 @@ const register = {
         neutered: 'No',
         microchipped: 'No',
         microchipNumber: 'N/A',
-        referenceNumber: '1234'
+        referenceNumber: '1234',
+        applicationStatus: 'Approved'
+      }
+    },
+    {
+      person: {
+        firstName: 'Mary',
+        lastName: 'Poppins',
+        addressLine1: '10 Downing Street',
+        townOrCity: 'London',
+        country: 'England',
+        postcode: 'SW1A 2AA',
+        dateOfBirth: new Date(2000, 0, 1),
+        phoneNumber: 3333333333,
+        email: 'test@example.com'
+      },
+      dog: {
+        name: 'Daisy',
+        dateOfBirth: new Date(2018, 7, 9),
+        colour: 'White',
+        gender: 'Female',
+        insuranceStartDate: new Date(2023, 10, 11),
+        neutered: 'No',
+        microchipped: 'No',
+        microchipNumber: 'N/A',
+        referenceNumber: '1234',
+        applicationStatus: 'Rejected'
       }
     }
   ],
