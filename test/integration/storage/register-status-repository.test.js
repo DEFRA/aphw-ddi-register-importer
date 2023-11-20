@@ -1,5 +1,6 @@
 const { tableClient } = require('../../../app/storage/get-table-client')
-const { getLatestUpdate, setProcessing } = require('../../../app/storage/register-status-repository')
+const { getLatestUpdate, setProcessing, setComplete } = require('../../../app/storage/register-status-repository')
+const { add, skipped, errors } = require('../../mocks/register/mock-result')
 
 describe('register status table repository', () => {
   beforeAll(async () => {
@@ -23,7 +24,7 @@ describe('register status table repository', () => {
     })
 
     jest.setSystemTime(new Date('2023-11-16T13:58:20.000Z'))
-    await setProcessing(filename, 'test@example.com')
+    await setProcessing(filename)
 
     const update = await getLatestUpdate(filename)
 
@@ -44,7 +45,7 @@ describe('register status table repository', () => {
     })
 
     jest.setSystemTime(new Date('2023-11-16T13:58:20.000Z'))
-    await setProcessing(filename, 'test@example.com')
+    await setProcessing(filename)
 
     const update = await getLatestUpdate(filename)
 
@@ -56,6 +57,43 @@ describe('register status table repository', () => {
       email: 'test@example.com',
       createdOn: '2023-11-16T13:58:19.000Z',
       updatedAt: '2023-11-16T13:58:20.000Z'
+    })
+  })
+
+  test('setComplete should add results to entity', async () => {
+    const filename = 'test-results-logging'
+
+    await tableClient.createEntity({
+      PartitionKey: filename,
+      RowKey: '0008638299856901000',
+      status: 'uploaded',
+      email: 'test@example.com',
+      createdOn: '2023-11-16T13:58:19.000Z',
+      updatedAt: '2023-11-16T13:58:19.000Z'
+    })
+
+    const results = {
+      add,
+      skipped,
+      errors
+    }
+
+    jest.setSystemTime(new Date('2023-11-16T13:58:20.000Z'))
+    await setComplete(filename, results)
+
+    const update = await getLatestUpdate(filename)
+
+    expect(update).toBeDefined()
+    expect(update).toMatchObject({
+      partitionKey: 'test-results-logging',
+      rowKey: '0008638299856900000',
+      status: 'complete',
+      email: 'test@example.com',
+      createdOn: '2023-11-16T13:58:19.000Z',
+      updatedAt: '2023-11-16T13:58:20.000Z',
+      add: JSON.stringify(add),
+      skipped: JSON.stringify(skipped),
+      errors: JSON.stringify(errors)
     })
   })
 
