@@ -1,14 +1,11 @@
 const readXlsxFile = require('read-excel-file/node')
 const registerMap = require('./schema/register-map')
-const { baseSchema } = require('./schema/register-schema')
-
-const notApprovedMessage = 'Application not "Approved"'
+const { baseSchema, manualSchema } = require('./schema/register-schema')
 
 const processRows = async (register, sheet, map, schema) => {
   const { rows } = await readXlsxFile(register, { sheet, map, dateFormat: 'dd/mm/yyyy' })
 
   const errors = []
-  const skipped = []
 
   const registerMap = new Map()
 
@@ -24,10 +21,6 @@ const processRows = async (register, sheet, map, schema) => {
     const person = row.person
     const dog = row.dog
 
-    if (dog.applicationStatus == null || dog.applicationStatus.toUpperCase() !== 'APPROVED') {
-      return skipped.push({ rowNum, row, messages: [notApprovedMessage] })
-    }
-
     const key = `${person.lastName}^${person.postcode}^${person.dateOfBirth}`
 
     const value = registerMap.get(key) || { ...person, dogs: [] }
@@ -39,7 +32,6 @@ const processRows = async (register, sheet, map, schema) => {
 
   const result = {
     add: [...registerMap.values()],
-    skipped,
     errors
   }
 
@@ -48,11 +40,11 @@ const processRows = async (register, sheet, map, schema) => {
 
 const importRegister = async register => {
   const passed = await processRows(register, 'Passed', registerMap, baseSchema)
+  const manual = await processRows(register, 'Manual', registerMap, manualSchema)
 
   return {
-    add: [].concat(passed.add),
-    skipped: [].concat(passed.skipped),
-    errors: [].concat(passed.errors)
+    add: [].concat(passed.add, manual.add),
+    errors: [].concat(passed.errors, manual.errors)
   }
 }
 
