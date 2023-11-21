@@ -10,17 +10,17 @@ describe('register import', () => {
   })
 
   test('should return register rows from xlsx', async () => {
-    const { payload } = await importRegister([])
+    const { add } = await importRegister([])
 
     expect(mockReadXlsxFile).toHaveBeenCalledTimes(1)
-    expect(payload).toHaveLength(3)
+    expect(add).toHaveLength(3)
   })
 
-  test('should group dogs under owner', async () => {
-    const { payload } = await importRegister([])
+  test('should group approved dogs under owner', async () => {
+    const { add } = await importRegister([])
 
-    const person = payload.find(p => p.lastName === 'Poppins' &&
-      p.dateOfBirth === '01/01/2000' &&
+    const person = add.find(p => p.lastName === 'Poppins' &&
+      p.dateOfBirth.getDate() === new Date(2000, 0, 1).getDate() &&
       p.postcode === 'SW1A 2AA')
 
     expect(person.dogs).toHaveLength(2)
@@ -32,17 +32,16 @@ describe('register import', () => {
     expect(person.dogs[1].colour).toEqual('grey')
   })
 
-  test('should ignore dogs without reference number', async () => {
-    const { payload } = await importRegister([])
+  test('should skip rejected dogs', async () => {
+    const { skipped } = await importRegister([])
 
-    const person = payload.find(p => p.lastName === 'Poppins' &&
-      p.dateOfBirth === '01/01/2000' &&
-      p.postcode === 'SW1A 2AA')
+    const data = skipped[0].row
 
-    const dog = person.dogs.find(d => d.name === 'Sam' &&
-      d.dateOfBirth === '01/01/2021')
-
-    expect(person.dogs).toHaveLength(2)
-    expect(dog).toBeUndefined()
+    expect(data.dog).toBeDefined()
+    expect(data.dog).toMatchObject({
+      name: 'Daisy',
+      colour: 'White',
+      applicationStatus: 'Rejected'
+    })
   })
 })

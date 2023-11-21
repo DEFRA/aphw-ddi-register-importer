@@ -42,10 +42,20 @@ describe('process import request message', () => {
   })
 
   test('should set import status to complete when payload correct', async () => {
+    importRegister.mockResolvedValue({
+      add: [],
+      skipped: [],
+      errors: []
+    })
+
     await processImportRequest(message, receiver)
 
     expect(importRegister).toHaveBeenCalledTimes(1)
-    expect(setComplete).toHaveBeenCalledWith(message.body.data.filename)
+    expect(setComplete).toHaveBeenCalledWith(message.body.data.filename, {
+      add: [],
+      skipped: [],
+      errors: []
+    })
   })
 
   test('should not complete message if error during processing', async () => {

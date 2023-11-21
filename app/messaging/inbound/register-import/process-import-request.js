@@ -19,9 +19,9 @@ const process = async (message, receiver) => {
     console.log('Received register import request: ', util.inspect(importRequest.body, false, null, true))
 
     const register = await downloadRegisterBlob(registerMetadata.filename)
-    await importRegister(register)
+    const results = await importRegister(register)
 
-    await setComplete(registerMetadata.filename)
+    await setComplete(registerMetadata.filename, results)
 
     await receiver.completeMessage(message)
 

@@ -1,33 +1,59 @@
 const readXlsxFile = require('read-excel-file/node')
-const registerSchema = require('./schema/register-schema')
+const registerMap = require('./schema/register-map')
+const { baseSchema } = require('./schema/register-schema')
 
-const processRows = file => {
+const notApprovedMessage = 'Application not "Approved"'
+
+const processRows = async (register, sheet, map, schema) => {
+  const { rows } = await readXlsxFile(register, { sheet, map, dateFormat: 'dd/mm/yyyy' })
+
+  const errors = []
+  const skipped = []
+
   const registerMap = new Map()
 
-  file.rows.forEach(row => {
+  rows.forEach((row, index) => {
+    const rowNum = index + 1
+
+    const result = schema.validate(row)
+
+    if (!result.isValid) {
+      return errors.push({ rowNum, row, errors: result.errors.details })
+    }
+
     const person = row.person
     const dog = row.dog
 
-    if (dog.referenceNumber !== undefined || dog.referenceNumber !== '') {
-      const key = `${person.lastName}^${person.postcode}^${person.dateOfBirth}`
-
-      const value = registerMap.get(key) || { ...person, dogs: [] }
-
-      value.dogs.push(dog)
-
-      registerMap.set(key, value)
+    if (dog.applicationStatus == null || dog.applicationStatus.toUpperCase() !== 'APPROVED') {
+      return skipped.push({ rowNum, row, messages: [notApprovedMessage] })
     }
+
+    const key = `${person.lastName}^${person.postcode}^${person.dateOfBirth}`
+
+    const value = registerMap.get(key) || { ...person, dogs: [] }
+
+    value.dogs.push(dog)
+
+    registerMap.set(key, value)
   })
 
-  return {
-    payload: [...registerMap.values()]
+  const result = {
+    add: [...registerMap.values()],
+    skipped,
+    errors
   }
+
+  return result
 }
 
-const importRegister = async data => {
-  const file = await readXlsxFile(data, { schema: registerSchema })
+const importRegister = async register => {
+  const passed = await processRows(register, 'Passed', registerMap, baseSchema)
 
-  return processRows(file)
+  return {
+    add: [].concat(passed.add),
+    skipped: [].concat(passed.skipped),
+    errors: [].concat(passed.errors)
+  }
 }
 
 module.exports = {
