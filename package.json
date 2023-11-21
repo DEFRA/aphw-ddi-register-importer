@@ -1,13 +1,13 @@
 {
   "name": "aphw-ddi-register-importer",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Worker service to process DDI register import requests",
   "homepage": "https://github.com/DEFRA/aphw-ddi-register-importer",
   "main": "app/index.js",
   "scripts": {
     "pretest": "npm run test:lint",
     "test": "jest --runInBand --forceExit",
-    "test:watch": "jest --coverage=false --onlyChanged --watch --runInBand",
+    "test:watch": "jest --coverage=false --onlyChanged --watch --runInBand --silent=\"false\"",
     "test:lint": "standard",
     "test:debug": "node --inspect-brk=0.0.0.0 ./node_modules/jest/bin/jest.js --coverage=false --onlyChanged --watch --runInBand --no-cache",
     "start:watch": "nodemon --inspect=0.0.0.0 --ext js --legacy-watch app/index.js",

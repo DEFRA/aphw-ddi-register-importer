@@ -24,8 +24,7 @@ const schema = {
       Neutered: 'neutered',
       Microchipped: 'microchipped',
       MicrochipNumber: 'microchipNumber',
-      'Reference Number': 'referenceNumber',
-      ApplicationStatus: 'applicationStatus'
+      'Index Number': 'indexNumber'
     }
   }
 }

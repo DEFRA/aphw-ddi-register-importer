@@ -12,8 +12,8 @@ describe('register import', () => {
   test('should return register rows from xlsx', async () => {
     const { add } = await importRegister([])
 
-    expect(mockReadXlsxFile).toHaveBeenCalledTimes(1)
-    expect(add).toHaveLength(3)
+    expect(mockReadXlsxFile).toHaveBeenCalledTimes(2)
+    expect(add).toHaveLength(6)
   })
 
   test('should group approved dogs under owner', async () => {
@@ -23,25 +23,12 @@ describe('register import', () => {
       p.dateOfBirth.getDate() === new Date(2000, 0, 1).getDate() &&
       p.postcode === 'SW1A 2AA')
 
-    expect(person.dogs).toHaveLength(2)
+    expect(person.dogs).toHaveLength(3)
 
     expect(person.dogs[0].name).toEqual('Fred')
     expect(person.dogs[0].colour).toEqual('Brown')
 
     expect(person.dogs[1].name).toEqual('Max')
     expect(person.dogs[1].colour).toEqual('grey')
-  })
-
-  test('should skip rejected dogs', async () => {
-    const { skipped } = await importRegister([])
-
-    const data = skipped[0].row
-
-    expect(data.dog).toBeDefined()
-    expect(data.dog).toMatchObject({
-      name: 'Daisy',
-      colour: 'White',
-      applicationStatus: 'Rejected'
-    })
   })
 })
