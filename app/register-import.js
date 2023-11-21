@@ -24,7 +24,7 @@ const processRows = async (register, sheet, map, schema) => {
     const person = row.person
     const dog = row.dog
 
-    if (dog.applicationStatus === undefined || dog.applicationStatus.toUpperCase() !== 'APPROVED') {
+    if (dog.applicationStatus == null || dog.applicationStatus.toUpperCase() !== 'APPROVED') {
       return skipped.push({ rowNum, row, messages: [notApprovedMessage] })
     }
 
