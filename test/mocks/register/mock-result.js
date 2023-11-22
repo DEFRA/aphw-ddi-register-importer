@@ -18,7 +18,7 @@ const add = [{
     neutered: 'Yes',
     microchipped: 'Yes',
     microchipNumber: 2134567891,
-    referenceNumber: 1234,
+    indexNumber: '1234',
     applicationStatus: 'Approved'
   }
 }]
@@ -45,7 +45,7 @@ const skipped = [{
       neutered: 'Yes',
       microchipped: 'Yes',
       microchipNumber: 2134567891,
-      referenceNumber: 1234,
+      indexNumber: '1234',
       applicationStatus: 'Approved'
     }
   },
@@ -74,7 +74,7 @@ const errors = [{
       neutered: 'Yes',
       microchipped: 'Yes',
       microchipNumber: 2134567891,
-      referenceNumber: 1234,
+      indexNumber: '1234',
       applicationStatus: 'Approved'
     }
   },
