@@ -1,5 +1,5 @@
 {{- if .Values.aadPodIdentity }}
-{{- include "ffc-helm-library.azure-identity-binding" (list . "aphw-ddi-portal.azure-identity-binding") -}}
+{{- include "ffc-helm-library.azure-identity-binding" (list . "aphw-ddi-register-importer.azure-identity-binding") -}}
 {{- end }}
-{{- define "aphw-ddi-portal.azure-identity-binding" -}}
+{{- define "aphw-ddi-register-importer.azure-identity-binding" -}}
 {{- end -}}
