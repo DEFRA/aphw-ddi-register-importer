@@ -23,8 +23,7 @@ const schema = Joi.object({
     neutered: Joi.string().required(),
     microchipped: Joi.string().required(),
     microchipNumber: Joi.alternatives().try(Joi.string(), Joi.number()).required(),
-    referenceNumber: Joi.alternatives().try(Joi.string(), Joi.number()).required(),
-    applicationStatus: Joi.string().optional()
+    indexNumber: Joi.number().required()
   }).required()
 })
 

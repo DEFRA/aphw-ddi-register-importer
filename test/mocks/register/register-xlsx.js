@@ -21,8 +21,7 @@ const register = {
         neutered: 'Yes',
         microchipped: 'Yes',
         microchipNumber: '2134567891',
-        referenceNumber: '1234',
-        applicationStatus: 'Approved'
+        indexNumber: 1234
       }
     },
     {
@@ -46,8 +45,7 @@ const register = {
         neutered: 'Yes',
         microchipped: 'Yes',
         microchipNumber: '1234567891',
-        referenceNumber: '1234',
-        applicationStatus: 'Approved'
+        indexNumber: 1234
       }
     },
     {
@@ -71,7 +69,7 @@ const register = {
         neutered: 'Yes',
         microchipped: 'Yes',
         microchipNumber: '1234567891',
-        applicationStatus: 'Approved'
+        indexNumber: 1234
       }
     },
     {
@@ -96,8 +94,7 @@ const register = {
         neutered: 'No',
         microchipped: 'Yes',
         microchipNumber: '1234567891',
-        referenceNumber: '1234',
-        applicationStatus: 'Approved'
+        indexNumber: 1234
       }
     },
     {
@@ -121,8 +118,7 @@ const register = {
         neutered: 'No',
         microchipped: 'No',
         microchipNumber: 'N/A',
-        referenceNumber: '1234',
-        applicationStatus: 'Approved'
+        indexNumber: 1234
       }
     },
     {
@@ -146,8 +142,7 @@ const register = {
         neutered: 'No',
         microchipped: 'No',
         microchipNumber: 'N/A',
-        referenceNumber: '1234',
-        applicationStatus: 'Approved'
+        indexNumber: 1234
       }
     },
     {
@@ -171,8 +166,7 @@ const register = {
         neutered: 'No',
         microchipped: 'No',
         microchipNumber: 'N/A',
-        referenceNumber: '1234',
-        applicationStatus: 'Rejected'
+        indexNumber: 1234
       }
     }
   ],
