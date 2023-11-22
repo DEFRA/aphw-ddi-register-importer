@@ -24,6 +24,7 @@
     "@hapi/wreck": "^18.0.1",
     "@joi/date": "^2.1.0",
     "applicationinsights": "^2.8.0",
+    "date-fns": "^2.30.0",
     "ffc-messaging": "^2.8.0",
     "joi": "^17.11.0",
     "log-timestamp": "^0.3.0",

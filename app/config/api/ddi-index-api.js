@@ -1,11 +1,11 @@
 const Joi = require('joi')
 
 const schema = Joi.object({
-  baseUrl: Joi.string()
+  baseUrl: Joi.string().required()
 })
 
 const config = {
-  baseUrl: process.env.DDI_INDEX_API_BASE_URL,
+  baseUrl: process.env.DDI_API_BASE_URL
 }
 
 const result = schema.validate(config, {

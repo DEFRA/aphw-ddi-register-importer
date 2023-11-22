@@ -1,12 +1,12 @@
 const { post } = require('./base')
-const schema = require('../../schema/dda-index-api/robot-import')
+const schema = require('../../schema/ddi-index-api/robot-import')
 
 const robotImportEndpoint = 'robot-import'
 
 const buildPayload = (add) => {
   const register = []
 
-  add.forEach(p => ({
+  add.forEach(p => register.push({
     dogs: p.dogs.map(d => ({
       indexNumber: d.indexNumber,
       name: d.name,
@@ -31,7 +31,7 @@ const buildPayload = (add) => {
         contacts: [
           {
             type: 'Phone',
-            contact: `${p.telephone}`
+            contact: `${p.phoneNumber}`
           },
           {
             type: 'Email',
@@ -48,14 +48,14 @@ const buildPayload = (add) => {
 }
 
 const createRegistration = async data => {
-  const data = buildPayload(data)
-  const { error } = schema.validate(data)
+  const payload = buildPayload(data)
+  const { error } = schema.validate(payload)
 
   if (error) {
     throw new Error(error)
   }
 
-  return post(robotImportEndpoint, data)
+  return post(robotImportEndpoint, payload)
 }
 
 module.exports = {
