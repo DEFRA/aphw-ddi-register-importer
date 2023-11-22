@@ -11,6 +11,10 @@ labels:
 appInsights:
   connectionString:
 
+azureIdentity:
+  clientID: not-a-real-clientID
+  resourceID: not-a-real-resourceID
+
 containerConfigMap:
   name: aphw-ddi-register-importer-config-map
 
@@ -32,3 +36,5 @@ container:
   messageQueueHost: host
   messageQueuePassword: password
   messageQueueUser: user
+
+aadPodIdentity: true
