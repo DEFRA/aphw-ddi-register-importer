@@ -41,7 +41,7 @@ const processRows = async (register, sheet, map, schema) => {
 const importRegister = async register => {
   const passed = await processRows(register, 'Passed', registerMap, baseSchema)
   const manual = await processRows(register, 'Manual', registerMap, manualSchema)
-  
+
   return {
     add: [].concat(passed.add, manual.add),
     errors: [].concat(passed.errors, manual.errors)
