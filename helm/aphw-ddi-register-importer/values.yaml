@@ -11,6 +11,10 @@ labels:
 appInsights:
   connectionString:
 
+azureIdentity:
+  clientID: not-a-real-clientID
+  resourceID: not-a-real-resourceID
+
 containerConfigMap:
   name: aphw-ddi-register-importer-config-map
 
@@ -26,3 +30,11 @@ container:
   limitMemory: 100Mi
   limitCpu: 100m
   port: 3000
+  azureStorageConnectionString: dummy
+  azureStorageUseConnectionString: false
+  azureStorageAccountName: aphwddi
+  messageQueueHost: host
+  messageQueuePassword: password
+  messageQueueUser: user
+
+aadPodIdentity: true
