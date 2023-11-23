@@ -33,6 +33,7 @@ container:
   azureStorageConnectionString: dummy
   azureStorageUseConnectionString: false
   azureStorageAccountName: aphwddi
+  importRequestQueueAddress: aphw-ddi-register-import-request
   messageQueueHost: host
   messageQueuePassword: password
   messageQueueUser: user

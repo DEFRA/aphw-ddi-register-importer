@@ -1,6 +1,11 @@
 {{- include "ffc-helm-library.container-config-map" (list . "aphw-ddi-register-importer.config-map") -}}
 {{- define "aphw-ddi-register-importer.config-map" -}}
 data:
+  {{- if and (.Values.environmentCode) (not .Values.pr) }}
+  REGISTER_IMPORT_REQUEST_QUEUE: {{ quote .Values.container.importRequestQueueAddress }}-{{ .Values.environmentCode }}
+  {{ else }}
+  REGISTER_IMPORT_REQUEST_QUEUE: {{ quote .Values.container.importRequestQueueAddress }}
+  {{- end }}
   NODE_ENV: {{ quote .Values.environment }}
   APPINSIGHTS_CLOUDROLE: {{ quote .Values.name }}
   AZURE_STORAGE_USE_CONNECTION_STRING: {{ quote .Values.container.azureStorageUseConnectionString }}
