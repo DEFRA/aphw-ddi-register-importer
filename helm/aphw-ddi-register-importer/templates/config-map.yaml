@@ -6,7 +6,6 @@ data:
   {{ else }}
   REGISTER_IMPORT_REQUEST_QUEUE: {{ quote .Values.container.importRequestQueueAddress }}
   {{- end }}
-  {{- if .Values.container.azureStorageUseConnectionString }}
   NODE_ENV: {{ quote .Values.environment }}
   APPINSIGHTS_CLOUDROLE: {{ quote .Values.name }}
   AZURE_STORAGE_USE_CONNECTION_STRING: {{ quote .Values.container.azureStorageUseConnectionString }}
