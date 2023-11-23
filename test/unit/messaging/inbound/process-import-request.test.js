@@ -9,6 +9,9 @@ const { importRegister } = require('../../../../app/register-import')
 jest.mock('../../../../app/storage/register-blob-repository')
 const { downloadRegisterBlob } = require('../../../../app/storage/register-blob-repository')
 
+jest.mock('../../../../app/api/ddi-index-api')
+const { importRegistrations } = require('../../../../app/api/ddi-index-api')
+
 jest.mock('../../../../app/storage/register-status-repository')
 const { setProcessing, setComplete, setFailed } = require('../../../../app/storage/register-status-repository')
 
@@ -20,6 +23,12 @@ const processImportRequest = require('../../../../app/messaging/inbound/register
 describe('process import request message', () => {
   beforeEach(() => {
     jest.clearAllMocks()
+
+    importRegister.mockResolvedValue({
+      add: [],
+      skipped: [],
+      errors: []
+    })
   })
 
   test('should import register', async () => {
@@ -27,6 +36,7 @@ describe('process import request message', () => {
 
     expect(downloadRegisterBlob).toHaveBeenCalledWith(message.body.data.filename)
     expect(importRegister).toHaveBeenCalledTimes(1)
+    expect(importRegistrations).toHaveBeenCalledTimes(1)
   })
 
   test('should complete message if processed successfully', async () => {
@@ -42,12 +52,6 @@ describe('process import request message', () => {
   })
 
   test('should set import status to complete when payload correct', async () => {
-    importRegister.mockResolvedValue({
-      add: [],
-      skipped: [],
-      errors: []
-    })
-
     await processImportRequest(message, receiver)
 
     expect(importRegister).toHaveBeenCalledTimes(1)
@@ -66,7 +70,7 @@ describe('process import request message', () => {
     expect(receiver.completeMessage).not.toHaveBeenCalled()
   })
 
-  test('eerror during processing should call setFailed', async () => {
+  test('error during processing should call setFailed', async () => {
     validateRequest.mockImplementation(() => { throw new Error('test error') })
 
     await processImportRequest(message, receiver)
@@ -84,6 +88,14 @@ describe('process import request message', () => {
     await processImportRequest(mockMessage, receiver)
 
     expect(setFailed).not.toHaveBeenCalled()
+  })
+
+  test('error during API call should deadletter message', async () => {
+    importRegistrations.mockImplementation(() => { throw new Error('test error') })
+
+    await processImportRequest(message, receiver)
+
+    expect(receiver.deadLetterMessage).toHaveBeenCalledWith(message)
   })
 
   test('error during processing should deadletter message', async () => {

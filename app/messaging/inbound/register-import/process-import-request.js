@@ -4,7 +4,7 @@ const { validate: validateData } = require('./import-data-schema')
 const { importRegister } = require('../../../register-import')
 const { downloadRegisterBlob } = require('../../../storage/register-blob-repository')
 const { setProcessing, setComplete, setFailed } = require('../../../storage/register-status-repository')
-const { createRegistration } = require('../../../api/ddi-index-api')
+const { importRegistrations } = require('../../../api/ddi-index-api')
 
 const process = async (message, receiver) => {
   try {
@@ -22,7 +22,7 @@ const process = async (message, receiver) => {
     const register = await downloadRegisterBlob(registerMetadata.filename)
     const results = await importRegister(register)
 
-    await createRegistration(results.add)
+    await importRegistrations(results.add)
 
     await setComplete(registerMetadata.filename, results)
 

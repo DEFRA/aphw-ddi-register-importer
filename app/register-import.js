@@ -1,8 +1,7 @@
 const readXlsxFile = require('read-excel-file/node')
-const { parse } = require('date-fns')
 const registerMap = require('./schema/register-map')
 const { baseSchema, manualSchema } = require('./schema/register-schema')
-const dateFormat = 'dd/mm/yyyy'
+const { parse } = require('date-fns')
 
 const processRows = async (register, sheet, map, schema) => {
   const { rows } = await readXlsxFile(register, { sheet, map, dateFormat: 'dd/mm/yyyy' })
@@ -20,10 +19,15 @@ const processRows = async (register, sheet, map, schema) => {
       return errors.push({ rowNum, row, errors: result.errors.details })
     }
 
+    console.log(row)
+
     const person = row.person
     const dog = row.dog
 
-    dog.dateOfBirth = parse(dog.dateOfBirth, dateFormat, new Date())
+    person.dateOfBirth = parse(person.dateOfBirth, 'dd/MM/yyyy', new Date())
+    dog.dateOfBirth = parse(dog.dateOfBirth, 'dd/MM/yyyy', new Date())
+
+    console.log(person.dateOfBirth)
 
     const key = `${person.lastName}^${person.postcode}^${person.dateOfBirth}`
 

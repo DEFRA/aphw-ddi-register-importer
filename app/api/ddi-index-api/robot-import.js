@@ -47,7 +47,7 @@ const buildPayload = (add) => {
   }
 }
 
-const createRegistration = async data => {
+const importRegistrations = async data => {
   const payload = buildPayload(data)
   const { error } = schema.validate(payload)
 
@@ -59,5 +59,5 @@ const createRegistration = async data => {
 }
 
 module.exports = {
-  createRegistration
+  importRegistrations
 }

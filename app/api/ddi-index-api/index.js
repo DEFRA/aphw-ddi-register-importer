@@ -1,5 +1,5 @@
-const { createRegistration } = require('./robot-import')
+const { importRegistrations } = require('./robot-import')
 
 module.exports = {
-  createRegistration
+  importRegistrations
 }
