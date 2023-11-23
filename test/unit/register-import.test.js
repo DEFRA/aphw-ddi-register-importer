@@ -5,7 +5,7 @@ const mockRegister = require('../mocks/register/register-xlsx')
 const { importRegister } = require('../../app/register-import')
 
 describe('register import', () => {
-  beforeAll(() => {
+  beforeEach(() => {
     mockReadXlsxFile.mockReturnValue(mockRegister)
   })
 

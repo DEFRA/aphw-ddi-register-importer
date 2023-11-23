@@ -9,4 +9,5 @@ data:
   NODE_ENV: {{ quote .Values.environment }}
   APPINSIGHTS_CLOUDROLE: {{ quote .Values.name }}
   AZURE_STORAGE_USE_CONNECTION_STRING: {{ quote .Values.container.azureStorageUseConnectionString }}
+  DDI_API_BASE_URL: {{ quote .Values.container.ddiApiBaseUrl }}
 {{- end -}}

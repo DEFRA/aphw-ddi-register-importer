@@ -21,7 +21,7 @@ const processRows = async (register, sheet, map, schema) => {
     const person = row.person
     const dog = row.dog
 
-    const key = `${person.lastName}^${person.postcode}^${person.dateOfBirth}`
+    const key = `${person.lastName}^${person.postcode}^${person.dateOfBirth.getDate()}`
 
     const value = registerMap.get(key) || { ...person, dogs: [] }
 

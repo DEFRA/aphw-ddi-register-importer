@@ -16,6 +16,7 @@ services:
       EVENTS_SUBSCRIPTION_ADDRESS: ${EVENT_SUBSCRIPTION_ADDRESS:-dangerous-dogs-index-event-hub}${MESSAGE_QUEUE_SUFFIX}
       AZURE_STORAGE_ACCOUNT_NAME: ${AZURE_STORAGE_ACCOUNT_NAME:-devstoreaccount1}
       AZURE_STORAGE_USE_CONNECTION_STRING: "true"
+      DDI_API_BASE_URL: ${DDI_API_BASE_URL:-aphw-ddi-api}
 
   aphw-ddi-register-importer-azurite:
     image: mcr.microsoft.com/azure-storage/azurite:3.23.0

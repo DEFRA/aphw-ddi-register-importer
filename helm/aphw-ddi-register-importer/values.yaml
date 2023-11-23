@@ -37,5 +37,6 @@ container:
   messageQueueHost: host
   messageQueuePassword: password
   messageQueueUser: user
+  ddiApiBaseUrl: aphw-ddi-api
 
 aadPodIdentity: true

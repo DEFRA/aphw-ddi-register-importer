@@ -1,4 +1,5 @@
-const Joi = require('joi')
+const joiDate = require('@joi/date')
+const Joi = require('joi').extend(joiDate)
 
 const schema = Joi.object({
   person: Joi.object({
@@ -10,16 +11,16 @@ const schema = Joi.object({
     county: Joi.string().optional(),
     country: Joi.string().required(),
     postcode: Joi.string().required(),
-    dateOfBirth: Joi.date().required(),
+    dateOfBirth: Joi.date().format('DD/MM/YYYY').required(),
     phoneNumber: Joi.alternatives().try(Joi.string(), Joi.number()).required(),
     email: Joi.string().required()
   }).required(),
   dog: Joi.object({
     name: Joi.string().required(),
-    dateOfBirth: Joi.date().required(),
+    dateOfBirth: Joi.date().format('DD/MM/YYYY').required(),
     colour: Joi.string().required(),
     gender: Joi.string().required(),
-    insuranceStartDate: Joi.date().required(),
+    insuranceStartDate: Joi.date().format('DD/MM/YYYY').required(),
     neutered: Joi.string().required(),
     microchipped: Joi.string().required(),
     microchipNumber: Joi.alternatives().try(Joi.string(), Joi.number()).required(),
