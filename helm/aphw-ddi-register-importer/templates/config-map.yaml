@@ -5,7 +5,7 @@ data:
   REGISTER_IMPORT_REQUEST_QUEUE: {{ quote .Values.container.importRequestQueueAddress }}-{{ .Values.environmentCode }}
   {{ else }}
   REGISTER_IMPORT_REQUEST_QUEUE: {{ quote .Values.container.importRequestQueueAddress }}
-  {{ - end }}
+  {{- end }}
   {{- if .Values.container.azureStorageUseConnectionString }}
   NODE_ENV: {{ quote .Values.environment }}
   APPINSIGHTS_CLOUDROLE: {{ quote .Values.name }}
