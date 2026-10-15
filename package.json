@@ -18,23 +18,23 @@
   "license": "OGL-UK-3.0",
   "dependencies": {
     "@azure/data-tables": "^13.2.2",
-    "@azure/identity": "^4.0.0",
-    "@azure/storage-blob": "^12.16.0",
-    "@hapi/hapi": "21.3.2",
-    "@hapi/wreck": "^18.0.1",
+    "@azure/identity": "^4.13.3",
+    "@azure/storage-blob": "^12.17.0",
+    "@hapi/hapi": "^21.4.10",
+    "@hapi/wreck": "^18.1.0",
     "@joi/date": "^2.1.0",
-    "applicationinsights": "^2.8.0",
-    "date-fns": "^2.30.0",
-    "ffc-messaging": "^2.8.0",
-    "joi": "^17.11.0",
+    "applicationinsights": "^3.16.0",
+    "date-fns": "^3.2.0",
+    "ffc-messaging": "^2.10.10",
+    "joi": "^17.13.8",
     "log-timestamp": "^0.3.0",
-    "read-excel-file": "^5.7.1"
+    "read-excel-file": "^5.8.1"
   },
   "devDependencies": {
-    "jest": "29.7.0",
-    "jest-junit": "16.0.0",
-    "nodemon": "3.0.1",
-    "standard": "17.1.0"
+    "jest": "^30.5.2",
+    "jest-junit": "^17.0.0",
+    "nodemon": "^3.0.1",
+    "standard": "^17.1.2"
   },
   "standard": {
     "globals": [
