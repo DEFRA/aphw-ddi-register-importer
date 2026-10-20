@@ -19,5 +19,5 @@ services:
       DDI_API_BASE_URL: ${DDI_API_BASE_URL:-aphw-ddi-api}
 
   aphw-ddi-register-importer-azurite:
-    image: mcr.microsoft.com/azure-storage/azurite:3.23.0
+    image: mcr.microsoft.com/azure-storage/azurite:3.37.0
     command: "azurite --skipApiVersionCheck --loose --blobHost 0.0.0.0 --tableHost 0.0.0.0"
