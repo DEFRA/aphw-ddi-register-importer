@@ -1,0 +1,7 @@
+resources:
+  identity: aphw-ddi-register-importer
+  service_bus:
+    queues:
+      - name: aphw-ddi-register-import-request
+        roles:
+          - name: receiver
