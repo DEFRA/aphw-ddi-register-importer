@@ -1,0 +1,18 @@
+---
+environment: production
+environmentCode: pre
+container:
+  messageQueueHost: PREFFCINFSB1001.servicebus.windows.net
+  importRequestQueueAddress: aphw-ddi-register-import-request
+secretProviderClass:
+  azure:
+    keyvaultName: PREFFCINFKV1001
+    objects:
+      - objectName: pre-ffcahwr-appinsights-connectionString
+        objectType: secret
+  secretObjects:
+    - secretName: aphw-ddi-register-importer
+      type: Opaque
+      data:
+        - objectName: pre-ffcahwr-appinsights-connectionString
+          key: APPINSIGHTS_CONNECTIONSTRING

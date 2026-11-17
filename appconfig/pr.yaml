@@ -1,0 +1,6 @@
+---
+environment: production
+environmentCode: snd
+container:
+  messageQueueHost: SNDFFCINFSB2001.servicebus.windows.net
+  importRequestQueueAddress: queue:aphw-ddi-register-import-request
